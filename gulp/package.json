@@ -1,5 +1,5 @@
 {
-  "name": "browsersync_setup",
+  "name": "boilerplate_sass-js-browsersync",
   "version": "1.0.0",
   "description": "Template for development with gulp and browsersync",
   "main": "index.js",
