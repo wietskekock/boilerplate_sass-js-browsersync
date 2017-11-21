@@ -7,28 +7,18 @@ var gulp = require('gulp'),
 var cssSources,
     jsSources;
 
-cssSources = ['sass/*.scss']
+cssSources = ['sass/**/*.scss'];
 jsSources = [
     'js/vendor/jquery-3.2.1.min.js',
-    'vendor/gsap/TimelineMax.min.js',
+    //'jsvendor/gsap/jquery.gsap.min.js',
+    'js/vendor/gsap/TweenMax.min.js',
     'js/vendor/scrollmagic/uncompressed/ScrollMagic.js',
+    'js/vendor/scrollmagic/uncompressed/plugins/animation.gsap.js',
     'js/vendor/scrollmagic/uncompressed/plugins/debug.addIndicators.js',
     'js/main.js'
 ];
 
 
-// Static Server + watching scss/html files
-gulp.task('serve', ['sass'], function() {
-
-    browserSync.init({
-        server: "../",
-        //directory: true
-    });
-
-    gulp.watch("gulp/sass/*.scss", ['sass']);
-    gulp.watch("gulp/js/*.js", ['scripts']);
-    gulp.watch("*.html").on('change', browserSync.reload);
-});
 
 // concat js files
 gulp.task('scripts', function() {
@@ -50,4 +40,17 @@ gulp.task('sass', function() {
         .pipe(browserSync.stream());
 });
 
-gulp.task('default', ['scripts', 'serve']);
+// Static Server + watching scss/html files
+gulp.task('serve', ['sass'], function() {
+
+    browserSync.init({
+        server: "../"
+        //directory: true
+    });
+
+    gulp.watch(cssSources, ['sass']);
+    gulp.watch("js/*.js", ['scripts']);
+    gulp.watch("../*.html").on('change', browserSync.reload);
+});
+
+gulp.task('default', ['scripts', 'sass',  'serve']);
