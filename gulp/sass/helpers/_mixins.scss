@@ -1,0 +1,21 @@
+@mixin shadow( $x, $y, $blur, $color ) {
+  -webkit-box-shadow: $x $y $blur $color;
+  -moz-box-shadow: $x $y $blur $color;
+  box-shadow: $x $y $blur $color;
+}
+
+@mixin animate( $property: all, $duration: 1s, $easing: ease ) {
+  -webkit-transition: $property $duration $easing;
+  -moz-transition: $property $duration $easing;
+  -o-transition: $property $duration $easing;
+  transition: $property $duration $easing;
+}
+
+@mixin links( $normal, $visited, $hover ) {
+  &:visited {
+    color: $visited;
+  }
+  &:hover, &:active, &:focus {
+    color: $hover;
+  }
+}
